@@ -1,5 +1,11 @@
 27/01/2021
 
+ - The project is based on xfemm and its development is carried out to improve the
+   plot functionalities. It was based on the version from soundforge with a few updates
+   from the github version.
+   soundforge: https://sourceforge.net/projects/xfemm/
+   github: https://github.com/REOptimize-Systems/xfemm
+
  - extent_mfemm() was updated to evaluate arc segments when defining problem extents.
 
  - fpproc() was modified to include
