@@ -1,0 +1,31 @@
+27/01/2021
+
+ - extent_mfemm() was updated to evaluate arc segments when defining problem extents.
+
+ - fpproc() was modified to include
+	. New syntax plotBfield('Parameter', Value), plotHfield('Parameter', Value)
+	and plotAfield('Parameter', Value). When [x, y, w, h] is not defined, the
+	function extent_mfemm() is used.
+	. Plot of the femmProblem is carried out after the results and without Nodes
+	  and the Labels. 
+
+	For the methods fpproc.plotBfield and plotHfield:
+	. 'Method': 0 for vector field using colored arrows. 
+		    1 for density plot.
+	. 'Points' determines the number of arrows that will be plotted using method 0.
+	. 'Density' determines the density of the interpolation for density plot (method 1).
+	. 'ShowFlux' enables the plot of the flux lines, with its number defined by 'FluxLines'.
+	. 'PlotCylindrical' uses cylindrical coordinates to define the interpolation region for 
+		density plot. For cylindrical coordinates, input parameters are
+		[r, theta, r_length, th_width], where:
+		- r: initial radius;
+		- theta: initial angle;
+		- r_length: radial length;
+		- th_width]: circunferential width.
+
+	For the methods fpproc.plotAfield:
+	. 'Method': 0 for filled contour plot, also defined by variable 'Density'. 
+		    1 was not defined.
+
+ - fmesher() is crashing. As an alternative, the mesh is executed using *.exe file:
+	. system(['C:\[installed folder]\xfemm_mingw_win64\cfemm\bin\fmesher ' filename]);

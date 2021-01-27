@@ -1,0 +1,86 @@
+## [1.9] - 2017-04-26
+
+## Modified
+
+- Meshing now supports options forcemaxmesh and dosmartmesh
+
+## fixed
+- mmake.m: corrected missing mfemmdeps package namespace on call
+  to parse_pv_pairs.m
+- fpproc.cpp: added missing return statement to ElmArea
+
+## [1.8] - 2016-09-18
+
+## Notes
+
+Releases now contain compiled binary mexfunctions for matlab
+
+## Modified
+- plotfemmproblem.m: optionally add material labels (or not)
+- fpproc: added ElmVolume method in C++ and also to fpproc.m class
+- fpproc: added 2D shape centroid block integral option
+
+## Fixed
+- hsolver.cpp: fixed major bug in writing solution file where wrong   
+  conversion factor was used to convert from internal units of mm to 
+  problem units
+- plotfemmproblem.m: now handle case where there is no MagDirFcn field 
+  in BlockLabel (e.g. in thermal simulation)
+- loadfemmsolution.m: fixed bug where block material numbers were not 
+  converted to names for non magnetostatics problems
+- hpproc: fixed annoying debug message about smoothing
+- build system, allow smoother mfemm build with mingw-w64 compiler 
+  suite on windows platform, and make some initial changes to allow
+  cross-build for windows from Linux using MXE (M Cross Environment)
+
+## [1.7] - 2016-22-06
+## Modified
+- plotfemmproblem.m: now add labels with units to plot axes
+
+### Fixed
+- missing dependancy rad2deg.m added (needed for
+  problem2freecad)
+- Fixed problem with determining compiler in older versions of
+  Matlab
+- Fixed mfemm/MMakefile_fmesher.m to use forward slashes for Windows
+  compilation (caused some problems with certain windows paths)
+- checkgeom_mfemm.m: fixed endless loop when there are no nodes
+  in problem
+
+
+## [1.6] - 2016-02-24
+### Added
+- segmentlength_mfemm.m: returns length of a segment
+- translatenewelements_mfemm.m: translates the n most recently
+  added elements
+- splitsegment_mfemm: split a segment into smaller subsegments
+
+### Modified
+- plotfemmproblem.m: add options to find and mark geometry
+  problems on the problem plot
+
+### Fixed
+- findsegment_mfemm.m: change to use actual distance to segment,
+  not segment mid points
+- keep .edge file of mesh if keeping the mesh after loading it
+  is requested
+- checkgeom_mfemm.m: no longer reports overlapping nodes twice
+- loadfemmsolution.m: correct loading of magnet direction when
+  it is a lua function string
+- plotfemmproblem.m: correct drawing of magnet direction when
+  it is a lua function string
+- Fixed various calls to functions in mfemmdeps package
+- Various improvements to help text etc.
+
+## [1.5] - 2015-08-28
+### Added
+- CHANGELOG.TXT
+- Test_fpproc.m, and reference.fem. A basic test script and
+  reference case for fpproc
+- test_release.sh: release test script
+
+### Fixed
+- Properly implemented line integral matlab interface
+- Added missing return statement in heat flow interface
+
+
