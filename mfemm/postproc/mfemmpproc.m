@@ -95,7 +95,7 @@ classdef mfemmpproc < handle
                       
                       if Inputs.PlotCylindrical
                             % Since the vector plot works better with
-                            % cartesian coordinates, lets translated
+                            % cartesian coordinates, lets translate
                             % This here is to adjust the plot extent with
                             % cylindrical inputs.
 
@@ -169,10 +169,20 @@ classdef mfemmpproc < handle
                       % Remove outliers of the data;
                       maxd = prctile(sqrt(u(:).^2 + v(:).^2),99.9);
                       
-
-                      pcolor(Xsample,Ysample,reshape(mfemmdeps.magn(data), size(Xsample)));
+                      % pcolor was giving problems with ploting resolution
+%                       pcolor(Xsample,Ysample,reshape(mfemmdeps.magn(data), size(Xsample)));
+                      
+                      [~,c_out ] = contourf(Xsample,Ysample,reshape(mfemmdeps.magn(data), size(Xsample)),50);
+                      c_out.LineStyle = 'none';
+                      % There is a small line, hidden here with a contour
+                      % contour which matches the contourf colormap.
+                      hold on
+                      contour(Xsample,Ysample, reshape(mfemmdeps.magn(data), size(Xsample)) ,50);
+                      hold off
+                      
                       hax = hfig.CurrentAxes;
-
+                      
+%                       view(2);
                       shading interp;
                       set(hax, 'CLim', [0 maxd]);
                       colorbar;
@@ -326,7 +336,7 @@ classdef mfemmpproc < handle
 
                       hold on
                         
-                      contour ( Xsample, Ysample, data, Inputs.FluxLines, 'Color', 'white', 'LineWidth', 0.1);
+                      contour ( Xsample, Ysample, data, Inputs.FluxLines, 'Color',  'w', 'LineWidth', 0.5);
                                             
                       hold off
                       
